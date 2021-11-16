@@ -4,10 +4,10 @@ import shopStore from "../../Stores/ShopStore";
 import ShopItem from "./ShopItem";
 import { observer } from "mobx-react-lite";
 
-const ShopList = () => {
+const ShopList = ({navigation}) => {
   if(shopStore.isLoading)return <Text>1</Text>
   const shopList = shopStore.shops.map((shop) => (
-    <ShopItem shop={shop} key={shop._id} />
+    <ShopItem shop={shop} key={shop._id} navigation={navigation} />
   ));
   return <View>{shopList}</View>;
 };

@@ -9,14 +9,18 @@ import ShopList from "./components/ShopList";
 import ShopItem from "./components/ShopList/ShopItem";
 import ShopDetail from "./components/ShopDetail";
 import ProductList from "./components/ProductList";
-
+import { NavigationContainer } from "@react-navigation/native";
+import RootNavigator from "./components/Navigation";
 export default function App() {
   return (
     <NativeBaseProvider>
-      <View style={styles.container}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+      {/* <View style={styles.container}>
         <ShopDetail/>
-        {/* <ShopList /> */}
-      </View>
+        <ShopList />
+      </View> */}
     </NativeBaseProvider>
   );
 }
