@@ -4,23 +4,14 @@ import React from "react";
 import { style, StyleSheet, Text, View } from "react-native";
 
 import { NativeBaseProvider, Box, Center } from "native-base";
-import Home from "./components/Home/index";
-import ShopList from "./components/ShopList";
-import ShopItem from "./components/ShopList/ShopItem";
-import ShopDetail from "./components/ShopDetail";
-import ProductList from "./components/ProductList";
 import { NavigationContainer } from "@react-navigation/native";
-import RootNavigator from "./components/Navigation";
+import RootNavigator from "./components/navigation/Navigation";
 export default function App() {
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider >
       <NavigationContainer>
         <RootNavigator />
       </NavigationContainer>
-      {/* <View style={styles.container}>
-        <ShopDetail/>
-        <ShopList />
-      </View> */}
     </NativeBaseProvider>
   );
 }
@@ -33,3 +24,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
