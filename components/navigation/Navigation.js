@@ -6,17 +6,18 @@ import ShopList from "../shopList/ShopList";
 import ShopDetail from "../shopDetail/ShopDetail";
 import CartList from "../Cart/CartList";
 import CartButton from "../buttons/CartButton";
+import Signin from "../auth/Signin";
+import Signup from "../auth/Signup";
 
 const { Navigator, Screen } = createStackNavigator();
 const RootNavigator = () => {
   return (
-    <Navigator initialRouteName="Home" >
+    <Navigator initialRouteName="Home">
       <Screen
         name="Home"
         component={Home}
         options={{
           headerShown: false,
-       
         }}
       />
       <Screen
@@ -41,7 +42,7 @@ const RootNavigator = () => {
           };
         }}
       />
-      
+
       <Screen
         name="CartList"
         component={CartList}
@@ -51,6 +52,24 @@ const RootNavigator = () => {
           },
         }}
       />
+      <Screen
+        name="Signin"
+        component={Signin}
+        options={{
+          headerStyle: {
+            backgroundColor: "#ffd1dc",
+          },
+        }}
+      ></Screen>
+      <Screen
+        name="Signup"
+        component={Signup}
+        options={{
+          headerStyle: {
+            backgroundColor: "#ffd1dc",
+          },
+        }}
+      ></Screen>
     </Navigator>
   );
 };

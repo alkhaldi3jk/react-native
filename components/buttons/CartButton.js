@@ -4,12 +4,29 @@ import Icon from "react-native-vector-icons/EvilIcons";
 import cartStore from "../../Stores/cartStore";
 import { Badge } from "native-base";
 import { observer } from "mobx-react";
-import { useNavigation } from "@react-navigation/native";
+import authStore from "../../Stores/authStore";
 
-const CartButton = () =>
+const CartButton = ({ navigation }) =>
   // { navigation }
   {
-    const navigation = useNavigation();
+    const handlePress = () => {
+      if (authStore.user) navigation.navigate("CartList");
+      else {
+        Alert.alert(
+          "Signin",
+          "You need to sign in before seeing the cart",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel",
+            },
+            { text: "Signin", onPress: () => navigation.navigate("Signin") },
+          ],
+          { cancelable: false }
+        );
+      }
+    };
 
     return (
       <View>
@@ -28,16 +45,9 @@ const CartButton = () =>
           {cartStore.totalItems}
         </Badge>
 
-        <Icon
-          name="cart"
-          size={40}
-          mr={4}
-          onPress={() => navigation.navigate("CartList")}
-        />
+        <Icon name="cart" size={40} mr={4} onPress={handlePress} />
       </View>
     );
   };
 
 export default observer(CartButton);
-
-const styles = StyleSheet.create({});
