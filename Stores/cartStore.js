@@ -76,7 +76,7 @@ class CartStore {
     await AsyncStorage.setItem("myCart", JSON.stringify(this.items));
   };
 
-  checkout = () => {
+  checkout = async() => {
     try {
       const cart = this.items.map((item) => ({
         ...item, //another soultion remove line 82 keep 84
@@ -84,7 +84,7 @@ class CartStore {
         // quantity: item.quantity,
       }));
       // console.log(cart); //check
-      const res = await instance.post("/checkout", { item: cart });
+      const res = await instance.post("/checkout", { items: cart });
       this.items = [];
       alert("I'm a cute message");
       await AsyncStorage.removeItem("myCart");
