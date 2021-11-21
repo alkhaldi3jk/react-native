@@ -59,7 +59,7 @@ const CartItem = ({ item }) => {
               ml="-0.5"
               mt="-1"
             >
-              `Total={item.quantity * item.product.price}`
+              Total={item.quantity * item.product.price}
             </Text>
           </Stack>
           <NumericInput

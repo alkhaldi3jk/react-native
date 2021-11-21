@@ -1,6 +1,6 @@
 import { Image, HStack, Pressable } from "native-base";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { baseURL } from "../../Stores/instance";
 
 const ShopItem = ({ shop, navigation }) => {

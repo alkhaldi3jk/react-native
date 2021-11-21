@@ -12,6 +12,9 @@ import {
   Image,
   Button,
 } from "native-base";
+import authStore from "../../Stores/authStore";
+import { observer } from "mobx-react";
+import Signin from "../auth/Signin";
 
 const Home = ({ navigation }) => {
   return (
@@ -29,11 +32,18 @@ const Home = ({ navigation }) => {
         <Box justifyContent="space-between">
           <VStack space="2">
             <Text fontSize="sm" color="white">
-              Shops
+              {`Hello ${
+                authStore.user
+                  ? authStore.user.username
+                  : "Click on cart to Join"
+              }`}
             </Text>
-            <Text color="white" fontSize="lg">
-              Let's Start!
-            </Text>
+            <Button onPress={authStore.signout}>Sign out</Button>
+            <Pressable onPress={() => navigation.navigate("Signin")}>
+              <Text color="white" fontSize="lg">
+                Let's Start!
+              </Text>
+            </Pressable>
           </VStack>
           <Pressable
             rounded="sm"
@@ -69,5 +79,4 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
-
+export default observer(Home);

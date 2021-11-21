@@ -11,23 +11,31 @@ class AuthStore {
   }
 
   checkForToken = async () => {
-    // this.user = null
-    const token = await AsyncStorage.getItem("myToken");
-    if (token) {
-      const currentTime = Date.now(); // give us the current time
-      let tempUser = decode(token);
-      if (tempUser.exp >= currentTime) {
-        this.setUser(token);
-      } else {
-        this.signOut();
+    try {
+      // this.user = null
+      const token = await AsyncStorage.getItem("myToken");
+      if (token) {
+        const currentTime = Date.now(); // give us the current time
+        let tempUser = decode(token);
+        if (tempUser.exp >= currentTime) {
+          this.setUser(token);
+        } else {
+          this.signOut();
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   setUser = async (token) => {
-    await AsyncStorage.setItem("myToken", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-    this.user = decode(token);
+    try {
+      await AsyncStorage.setItem("myToken", token);
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+      this.user = decode(token);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   signup = async (userData) => {
@@ -39,10 +47,14 @@ class AuthStore {
     }
   };
 
-  signOut = async () => {
-    delete instance.defaults.headers.common.Authorization;
-    await AsyncStorage.removeItem("myToken");
-    this.user = null;
+  signout = async () => {
+    try {
+      delete instance.defaults.headers.common.Authorization;
+      await AsyncStorage.removeItem("myToken");
+      this.user = null;
+    } catch (error) {
+        console.log(error)
+    }
   };
 
   signin = async (userData) => {

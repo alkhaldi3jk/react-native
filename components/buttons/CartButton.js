@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,Alert } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import cartStore from "../../Stores/cartStore";
 import { Badge } from "native-base";

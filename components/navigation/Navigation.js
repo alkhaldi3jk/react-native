@@ -10,6 +10,7 @@ import Signin from "../auth/Signin";
 import Signup from "../auth/Signup";
 
 const { Navigator, Screen } = createStackNavigator();
+
 const RootNavigator = () => {
   return (
     <Navigator initialRouteName="Home">

@@ -73,16 +73,27 @@ class CartStore {
 
   removeItemFromCart = async (productId) => {
     this.items = this.items.filter((item) => item.product._id !== productId);
-    await AsyncStorage.setItem('myCart', JSON.stringify(this.items));
+    await AsyncStorage.setItem("myCart", JSON.stringify(this.items));
   };
-
 
   checkout = () => {
-    this.items = [];
-    alert("I'm a cute message");
+    try {
+      const cart = this.items.map((item) => ({
+        ...item, //another soultion remove line 82 keep 84
+        product: item.product._id,
+        // quantity: item.quantity,
+      }));
+      // console.log(cart); //check
+      const res = await instance.post("/checkout", { item: cart });
+      this.items = [];
+      alert("I'm a cute message");
+      await AsyncStorage.removeItem("myCart");
+      alert("Thank you for your trust");
+    } catch (error) {
+      console.log(error)
+    }
   };
 }
-
 
 const cartStore = new CartStore();
 // cartStore.fetchCarts();

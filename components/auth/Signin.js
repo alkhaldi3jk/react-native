@@ -73,7 +73,7 @@ const Signin = ({navigation}) => {
               Forget Password?
             </Link>
           </FormControl>
-          <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
+          <Button mt="2" colorScheme="indigo" onPress={handleSubmit} >
             Sign in
           </Button>
           <HStack mt="6" justifyContent="center">
@@ -92,7 +92,7 @@ const Signin = ({navigation}) => {
                 fontWeight: "medium",
                 fontSize: "sm",
               }}
-              href="#"
+              href="Home"
               onPress={() => navigation.navigate('Signup')}
             >
               Sign Up
